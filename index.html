@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$TOSHI</title>
+
+    <!-- Preload the background image for highest priority loading -->
+    <link rel="preload" as="image" href="https://i.postimg.cc/L5Q8cDh2/Proyecto-nuevo-(1).png">
+
     <style>
         * {
             margin: 0;
@@ -12,6 +16,9 @@
         }
 
         body {
+            /* Fallback background color – dark, no white flash */
+            background-color: #0a0a2a;
+
             /* Fullscreen background image, no overlay */
             background: url('https://i.postimg.cc/L5Q8cDh2/Proyecto-nuevo-(1).png') no-repeat center center fixed;
             background-size: cover;
@@ -30,7 +37,6 @@
             color: #ffffff;
             letter-spacing: 2px;
             text-transform: uppercase;
-            /* No shadows, no glow */
         }
 
         /* GIF – most at left, starting clean at bottom */
@@ -41,10 +47,8 @@
             max-width: 100%;
             height: auto;
             display: block;
-            /* No filter, no shadow */
         }
 
-        /* Optional: keep GIF from being too huge on small screens */
         @media (max-width: 600px) {
             .bottom-left-gif {
                 max-width: 90%;
@@ -58,10 +62,8 @@
     </style>
 </head>
 <body>
-    <!-- Top-left text only -->
     <div class="top-left-text">$TOSHI</div>
 
-    <!-- GIF positioned at bottom-left corner -->
     <img
         src="https://i.postimg.cc/RZRZmg2j/ezgif-com-gif-maker-(5).gif"
         alt="$TOSHI slashing JEETS"
