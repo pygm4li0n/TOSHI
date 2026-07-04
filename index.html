@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$TOSHI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Fullscreen background image, no overlay */
+            background: url('https://i.postimg.cc/L5Q8cDh2/Proyecto-nuevo-(1).png') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            position: relative;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* $TOSHI text – top left only, no effects */
+        .top-left-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            /* No shadows, no glow */
+        }
+
+        /* GIF – most at left, starting clean at bottom */
+        .bottom-left-gif {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            /* No filter, no shadow */
+        }
+
+        /* Optional: keep GIF from being too huge on small screens */
+        @media (max-width: 600px) {
+            .bottom-left-gif {
+                max-width: 90%;
+            }
+            .top-left-text {
+                font-size: 2rem;
+                top: 10px;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top-left text only -->
+    <div class="top-left-text">$TOSHI</div>
+
+    <!-- GIF positioned at bottom-left corner -->
+    <img
+        src="https://i.postimg.cc/RZRZmg2j/ezgif-com-gif-maker-(5).gif"
+        alt="$TOSHI slashing JEETS"
+        class="bottom-left-gif"
+        loading="eager"
+    />
+</body>
+</html>
