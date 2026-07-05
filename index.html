@@ -1,74 +1,749 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$TOSHI</title>
-
-    <!-- Preload the background image for highest priority loading -->
-    <link rel="preload" as="image" href="https://i.postimg.cc/L5Q8cDh2/Proyecto-nuevo-(1).png">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>$TOSHI — 断 THE BLADE THAT ENDS BAGS</title>
+    <link rel="preload" as="image" href="https://i.postimg.cc/L5Q8cDh2/Proyecto-nuevo-(1).png" />
+    <link rel="preload" as="image" href="https://i.postimg.cc/vmMLH7Gy/Chat-GPT-Image-4-jul-2026-06-00-58-p-m-(1).png" />
+    <link rel="preload" as="image" href="https://i.postimg.cc/g0dQF65r/Chat-GPT-Image-4-jul-2026-11-24-44-p-m-(1).png" />
+    <link rel="preload" as="image" href="https://i.postimg.cc/VkPHnCzG/600x600-(1).avif" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Yuji+Mai&family=Cinzel:wght@600;800&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
     <style>
+        :root {
+            --ink: #07060a;
+            --blood: #a4141c;
+            --blood-bright: #dd2430;
+            --gold: #c79b46;
+            --gold-bright: #f0cd7a;
+            --bone: #ece4d0;
+            --steel: #848b9b;
+            --up: #63d98f;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        html,
         body {
-            /* Fallback background color – dark, no white flash */
-            background-color: #0a0a2a;
-
-            /* Fullscreen background image, no overlay */
-            background: url('https://i.postimg.cc/L5Q8cDh2/Proyecto-nuevo-(1).png') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            background: var(--ink);
+            height: 100vh;
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--bone);
             position: relative;
-            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
-        /* $TOSHI text – top left only, no effects */
-        .top-left-text {
+        .bg-photo {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: url('https://i.postimg.cc/L5Q8cDh2/Proyecto-nuevo-(1).png') no-repeat center center;
+            background-size: cover;
+        }
+        .bg-photo::after {
+            content: '';
             position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 3rem;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            inset: 0;
+            background: radial-gradient(ellipse 55% 45% at 12% 100%, rgba(164, 20, 28, .30), transparent 60%),
+                radial-gradient(ellipse 50% 40% at 88% 6%, rgba(199, 155, 70, .18), transparent 55%),
+                linear-gradient(200deg, rgba(7, 6, 10, .25) 0%, rgba(7, 6, 10, .65) 55%, rgba(7, 6, 10, .94) 100%);
+        }
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: .05;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        .kanji-mark {
+            position: fixed;
+            font-family: 'Yuji Mai', serif;
+            color: rgba(199, 155, 70, .06);
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+            line-height: 1;
+        }
+        .kanji-mark.k1 {
+            font-size: min(52vw, 780px);
+            top: -14%;
+            right: -12%;
+            transform: rotate(8deg);
+        }
+        .kanji-mark.k2 {
+            font-size: min(30vw, 420px);
+            bottom: -8%;
+            left: -6%;
+            transform: rotate(-6deg);
+            color: rgba(221, 36, 48, .05);
         }
 
-        /* GIF – most at left, starting clean at bottom */
-        .bottom-left-gif {
+        .ember {
+            position: fixed;
+            bottom: -10px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold-bright), var(--blood) 70%, transparent 100%);
+            box-shadow: 0 0 8px 2px rgba(240, 205, 122, .55);
+            z-index: 2;
+            pointer-events: none;
+            animation: rise linear infinite;
+        }
+        @keyframes rise {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: .85;
+            }
+            90% {
+                opacity: .4;
+            }
+            100% {
+                transform: translateY(-105vh) translateX(var(--drift, 20px));
+                opacity: 0;
+            }
+        }
+
+        .slash-veil {
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            background: var(--ink);
+            animation: veilOut .5s ease-in .85s forwards;
+            pointer-events: none;
+        }
+        @keyframes veilOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        .slash-line {
+            position: fixed;
+            top: 50%;
+            left: -20%;
+            width: 150%;
+            height: 4px;
+            z-index: 61;
+            background: linear-gradient(90deg, transparent, var(--gold-bright) 18%, #fff 50%, var(--blood-bright) 82%, transparent);
+            box-shadow: 0 0 25px 4px rgba(240, 205, 122, .85), 0 0 55px 12px rgba(164, 20, 28, .5);
+            transform: translateY(-50vh) rotate(-14deg);
+            animation: slashMove .85s cubic-bezier(.6, 0, .2, 1) .05s forwards;
+            pointer-events: none;
+        }
+        @keyframes slashMove {
+            0% {
+                transform: translateY(-60vh) rotate(-14deg);
+            }
+            100% {
+                transform: translateY(60vh) rotate(-14deg);
+            }
+        }
+
+        .stage {
+            position: relative;
+            z-index: 5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0.6rem 1rem;
+            gap: 0.2rem;
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── TOP SECTION: Big logo & tagline ── */
+        .top-section {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+            padding: 0.4rem 0;
+            opacity: 0;
+            animation: riseIn .8s ease-out 1.05s forwards;
+        }
+        .huge-logo {
+            width: min(70vw, 480px);
+            height: auto;
+            filter: drop-shadow(0 0 40px rgba(199, 155, 70, .4)) drop-shadow(0 12px 30px rgba(0, 0, 0, .6));
+        }
+        .kicker {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            letter-spacing: 6px;
+            color: var(--blood-bright);
+            text-transform: uppercase;
+            font-weight: 800;
+            text-shadow: 0 0 15px rgba(221, 36, 48, .55);
+            white-space: nowrap;
+        }
+        .jeets-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .mercy-text {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+            letter-spacing: 4px;
+            color: var(--steel);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .big-jeets-img {
+            width: clamp(60px, 9vw, 90px);
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(221, 36, 48, .6));
+        }
+        .tagline {
+            font-family: 'Yuji Mai', serif;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            color: var(--gold-bright);
+            opacity: .8;
+            margin-top: 0.1rem;
+        }
+        .tagline span {
+            color: var(--bone);
+            margin: 0 .3rem;
+        }
+
+        /* ── CENTER SECTION: GIF + Ledger ── */
+        .center-section {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            padding: 0 0.5rem;
+            min-height: 0;
+            opacity: 0;
+            animation: riseIn .7s ease-out 1.25s forwards;
+        }
+        .warrior-wrapper {
+            flex: 0 1 auto;
+            height: 100%;
+            max-height: 75vh;
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .6), 0 0 0 1px rgba(199, 155, 70, .15) inset;
+            background: #000;
+        }
+        .warrior-wrapper img {
+            display: block;
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, .6));
+        }
+        .ticket-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
-            max-width: 100%;
-            height: auto;
-            display: block;
+            right: 0;
+            background: rgba(9, 8, 12, .92);
+            border-top: 1px solid rgba(199, 155, 70, .4);
+            backdrop-filter: blur(6px);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--bone);
+            cursor: pointer;
+            z-index: 2;
+            transition: background .3s, border-color .3s;
+        }
+        .ticket-overlay:hover {
+            background: rgba(20, 10, 10, .95);
+            border-top-color: var(--gold-bright);
+        }
+        .ca-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            padding-right: 12px;
+            border-right: 1px solid rgba(199, 155, 70, .3);
+        }
+        .ca-address {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .copy-stamp {
+            background: rgba(164, 20, 28, .15);
+            border: 1.5px solid var(--blood-bright);
+            color: var(--blood-bright);
+            font-family: 'Yuji Mai', serif;
+            font-size: 1.4rem;
+            padding: 5px 12px;
+            cursor: pointer;
+            transition: all .25s;
+            line-height: 1;
+            border-radius: 2px;
+        }
+        .copy-stamp:hover {
+            background: var(--blood);
+            border-color: var(--gold-bright);
+            color: var(--gold-bright);
+            box-shadow: 0 0 15px rgba(240, 205, 122, .5);
         }
 
-        @media (max-width: 600px) {
-            .bottom-left-gif {
-                max-width: 90%;
+        .ledger {
+            flex: 1 1 auto;
+            height: 100%;
+            max-height: 75vh;
+            background: linear-gradient(165deg, rgba(13, 11, 18, .92), rgba(9, 8, 13, .75));
+            border: 1px solid rgba(199, 155, 70, .25);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .5);
+        }
+        .ledger-head {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 1px solid rgba(199, 155, 70, .2);
+            padding-bottom: 0.4rem;
+            flex-shrink: 0;
+        }
+        .bull-emblem {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold-bright);
+            box-shadow: 0 0 15px rgba(240, 205, 122, .5);
+        }
+        .ledger-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .live-indicator {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            color: var(--steel);
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1px;
+        }
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blood-bright);
+            box-shadow: 0 0 6px var(--blood-bright);
+            animation: ember-pulse 1.4s infinite;
+        }
+        @keyframes ember-pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 6px var(--blood-bright);
             }
-            .top-left-text {
-                font-size: 2rem;
-                top: 10px;
-                left: 10px;
+            50% {
+                box-shadow: 0 0 12px var(--blood-bright), 0 0 20px rgba(221, 36, 48, .55);
+            }
+        }
+
+        .rows {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            flex: 1;
+        }
+        .row {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 6px;
+            border-top: 1px solid rgba(255, 255, 255, .04);
+        }
+        .row:first-child {
+            border-top: none;
+        }
+        .row-icon {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            background: rgba(199, 155, 70, .1);
+            border: 1px solid rgba(199, 155, 70, .25);
+            border-radius: 4px;
+            font-size: 1.2rem;
+        }
+        .row-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .row-label {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--bone);
+            font-weight: 700;
+        }
+        .row-hint {
+            font-size: 0.68rem;
+            letter-spacing: 0.3px;
+            color: var(--steel);
+            font-weight: 500;
+        }
+        .row-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+            color: var(--gold-bright);
+            text-align: right;
+            white-space: nowrap;
+        }
+        .row-value.up {
+            color: var(--up);
+            text-shadow: 0 0 10px rgba(99, 217, 143, .35);
+        }
+        .row-value.down {
+            color: var(--blood-bright);
+            text-shadow: 0 0 10px rgba(221, 36, 48, .35);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, .18) 50%, transparent 80%);
+            background-size: 200% 100%;
+            animation: shimmer 1.3s infinite;
+            color: transparent !important;
+            text-shadow: none !important;
+            border-radius: 3px;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-25px);
+            background: linear-gradient(160deg, var(--gold-bright), var(--gold));
+            color: var(--ink);
+            padding: 10px 24px;
+            border-radius: 2px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+            opacity: 0;
+            pointer-events: none;
+            font-family: 'Cinzel', serif;
+        }
+        .toast.show {
+            animation: toastPop 1.8s ease-out forwards;
+        }
+        @keyframes toastPop {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-25px);
+            }
+            15% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-15px);
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 800px) {
+            html,
+            body {
+                overflow-y: auto;
+            }
+            .stage {
+                height: auto;
+                gap: 1rem;
+            }
+            .center-section {
+                flex-direction: column;
+                height: auto;
+                align-items: stretch;
+            }
+            .warrior-wrapper,
+            .ledger {
+                height: auto;
+                max-height: none;
+            }
+            .warrior-wrapper img {
+                width: 100%;
+                height: auto;
+            }
+            .huge-logo {
+                width: min(80vw, 300px);
             }
         }
     </style>
 </head>
 <body>
-    <div class="top-left-text">$TOSHI</div>
+    <div class="bg-photo"></div>
+    <div class="grain"></div>
+    <div class="kanji-mark k1">斬</div>
+    <div class="kanji-mark k2">断</div>
+    <div class="slash-veil"></div>
+    <div class="slash-line"></div>
+    <div class="toast" id="toast">CA SEALED</div>
 
-    <img
-        src="https://i.postimg.cc/RZRZmg2j/ezgif-com-gif-maker-(5).gif"
-        alt="$TOSHI slashing JEETS"
-        class="bottom-left-gif"
-        loading="eager"
-    />
+    <main class="stage">
+        <!-- TOP: Huge ToshiBull logo + tagline -->
+        <div class="top-section">
+            <img class="huge-logo" src="https://i.postimg.cc/vmMLH7Gy/Chat-GPT-Image-4-jul-2026-06-00-58-p-m-(1).png" alt="$TOSHI" />
+            <div class="kicker">断 · The Blade That Ends Bags</div>
+            <div class="jeets-row">
+                <span class="mercy-text">No Mercy For The</span>
+                <img class="big-jeets-img" src="https://i.postimg.cc/g0dQF65r/Chat-GPT-Image-4-jul-2026-11-24-44-p-m-(1).png" alt="Jeets" />
+            </div>
+            <div class="tagline">忠<span>·</span>義<span>·</span>勇<span>·</span>斬</div>
+        </div>
+
+        <!-- CENTER: GIF + Battle Ledger -->
+        <div class="center-section">
+            <div class="warrior-wrapper">
+                <img src="https://i.postimg.cc/RZRZmg2j/ezgif-com-gif-maker-(5).gif" alt="Toshi slashing JEETS" />
+                <div class="ticket-overlay" id="caCopy">
+                    <span class="ca-label">CA</span>
+                    <span class="ca-address" id="caAddress">9imsuzYNQmphyVnkCcsWJHgZKrhaa2YYS3mVidTqqJm</span>
+                    <button class="copy-stamp">写</button>
+                </div>
+            </div>
+
+            <div class="ledger">
+                <div class="ledger-head">
+                    <img class="bull-emblem" src="https://i.postimg.cc/VkPHnCzG/600x600-(1).avif" alt="Emblem" />
+                    <span class="ledger-title">Battle Ledger</span>
+                    <div class="live-indicator"><span class="live-dot"></span><span id="liveLabel">Live</span></div>
+                </div>
+                <div class="rows">
+                    <div class="row"><div class="row-icon">💰</div><div class="row-text"><span class="row-label">Price</span><span class="row-hint">Live USD per token</span></div><span class="row-value shimmer" id="priceVal">--</span></div>
+                    <div class="row"><div class="row-icon">📈</div><div class="row-text"><span class="row-label">24h Change</span><span class="row-hint">Since yesterday</span></div><span class="row-value shimmer" id="changeVal">--</span></div>
+                    <div class="row"><div class="row-icon">🏛️</div><div class="row-text"><span class="row-label">Market Cap</span><span class="row-hint">Fully diluted</span></div><span class="row-value shimmer" id="mcapVal">--</span></div>
+                    <div class="row"><div class="row-icon">📊</div><div class="row-text"><span class="row-label">Volume 24h</span><span class="row-hint">Total all pairs</span></div><span class="row-value shimmer" id="volumeVal">--</span></div>
+                    <div class="row"><div class="row-icon">💧</div><div class="row-text"><span class="row-label">Liquidity</span><span class="row-hint">Pooled backing</span></div><span class="row-value shimmer" id="liqVal">--</span></div>
+                    <div class="row"><div class="row-icon">🔄</div><div class="row-text"><span class="row-label">Buys / Sells</span><span class="row-hint">24h trades</span></div><span class="row-value shimmer" id="txnsVal">--</span></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (() => {
+            const PAIR_ID = '9imsuzYNQmphyVnkCcsWJHgZKrhaa2YYS3mVidTqqJm';
+            const PAIR_URL = `https://api.dexscreener.com/latest/dex/pairs/solana/${PAIR_ID}`;
+            const CA = PAIR_ID;
+            let refreshTimer = null;
+
+            const priceVal = document.getElementById('priceVal');
+            const changeVal = document.getElementById('changeVal');
+            const mcapVal = document.getElementById('mcapVal');
+            const volumeVal = document.getElementById('volumeVal');
+            const liqVal = document.getElementById('liqVal');
+            const txnsVal = document.getElementById('txnsVal');
+            const liveLabel = document.getElementById('liveLabel');
+            const toast = document.getElementById('toast');
+
+            const formatPrice = (n) => {
+                if (n == null || isNaN(n)) return '--';
+                if (n === 0) return '$0.00';
+                if (n < 1e-6) return '$' + n.toExponential(3);
+                if (n < 0.001) return '$' + n.toFixed(8).replace(/\.?0+$/, '');
+                if (n < 1) return '$' + n.toFixed(6).replace(/\.?0+$/, '');
+                if (n < 1000) return '$' + n.toFixed(2);
+                if (n < 1e6) return '$' + (n / 1e3).toFixed(1) + 'K';
+                if (n < 1e9) return '$' + (n / 1e6).toFixed(2) + 'M';
+                return '$' + (n / 1e9).toFixed(2) + 'B';
+            };
+            const formatCompact = (n) => {
+                if (n == null || isNaN(n)) return '--';
+                if (n < 1000) return '$' + n.toFixed(0);
+                if (n < 1e6) return '$' + (n / 1e3).toFixed(1) + 'K';
+                if (n < 1e9) return '$' + (n / 1e6).toFixed(2) + 'M';
+                return '$' + (n / 1e9).toFixed(2) + 'B';
+            };
+            const formatPercent = (n) => {
+                if (n == null || isNaN(n)) return '--';
+                return (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
+            };
+            const formatInt = (n) => {
+                if (n == null || isNaN(n)) return '--';
+                if (n < 1000) return n.toString();
+                if (n < 1e6) return (n / 1e3).toFixed(1) + 'K';
+                return (n / 1e6).toFixed(2) + 'M';
+            };
+
+            async function fetchPair() {
+                try {
+                    const res = await fetch(PAIR_URL);
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    const data = await res.json();
+                    if (data.pairs && data.pairs.length > 0) return data.pairs[0];
+                    return null;
+                } catch (e) {
+                    console.warn('DexScreener error:', e.message);
+                    return null;
+                }
+            }
+
+            function updateUI(pair) {
+                document.querySelectorAll('.shimmer').forEach(el => el.classList.remove('shimmer'));
+                if (!pair) {
+                    priceVal.textContent = '--';
+                    changeVal.textContent = '--';
+                    changeVal.className = 'row-value';
+                    mcapVal.textContent = '--';
+                    volumeVal.textContent = '--';
+                    liqVal.textContent = '--';
+                    txnsVal.textContent = '--';
+                    liveLabel.textContent = 'Offline';
+                    return;
+                }
+
+                const price = parseFloat(pair.priceUsd);
+                priceVal.textContent = formatPrice(price);
+
+                const change = pair.priceChange?.h24;
+                if (change !== undefined && change !== null) {
+                    const c = parseFloat(change);
+                    changeVal.textContent = formatPercent(c);
+                    changeVal.className = 'row-value ' + (c >= 0 ? 'up' : 'down');
+                } else {
+                    changeVal.textContent = '--';
+                    changeVal.className = 'row-value';
+                }
+
+                const fdv = pair.fdv ? parseFloat(pair.fdv) : null;
+                const mcap = pair.marketCap ? parseFloat(pair.marketCap) : fdv;
+                mcapVal.textContent = mcap ? formatCompact(mcap) : '--';
+
+                const vol = pair.volume?.h24;
+                volumeVal.textContent = vol ? formatCompact(parseFloat(vol)) : '--';
+
+                const liq = pair.liquidity?.usd;
+                liqVal.textContent = liq ? formatCompact(parseFloat(liq)) : '--';
+
+                const txns = pair.txns?.h24;
+                if (txns && txns.buys !== undefined && txns.sells !== undefined) {
+                    txnsVal.textContent = `${formatInt(txns.buys)} / ${formatInt(txns.sells)}`;
+                } else if (typeof txns === 'number') {
+                    txnsVal.textContent = formatInt(txns);
+                } else {
+                    txnsVal.textContent = '--';
+                }
+
+                liveLabel.textContent = 'Live';
+            }
+
+            async function refreshData() {
+                liveLabel.textContent = 'Syncing';
+                const pair = await fetchPair();
+                updateUI(pair);
+            }
+
+            function copyCA() {
+                const showToast = () => {
+                    toast.classList.remove('show');
+                    void toast.offsetWidth;
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 1800);
+                };
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(CA).then(showToast).catch(() => {
+                        const tmp = document.createElement('input');
+                        tmp.value = CA;
+                        document.body.appendChild(tmp);
+                        tmp.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tmp);
+                        showToast();
+                    });
+                }
+            }
+
+            document.getElementById('caCopy').addEventListener('click', copyCA);
+
+            refreshData().then(() => {
+                refreshTimer = setInterval(refreshData, 30000);
+            });
+            window.addEventListener('beforeunload', () => clearInterval(refreshTimer));
+
+            function spawnEmbers() {
+                const count = window.innerWidth < 600 ? 5 : 10;
+                for (let i = 0; i < count; i++) {
+                    const e = document.createElement('div');
+                    e.className = 'ember';
+                    const size = 3 + Math.random() * 4;
+                    e.style.width = e.style.height = size + 'px';
+                    e.style.left = (Math.random() * 100) + 'vw';
+                    e.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
+                    e.style.animationDuration = (6 + Math.random() * 7) + 's';
+                    document.body.appendChild(e);
+                    setTimeout(() => e.remove(), 14000);
+                }
+            }
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                spawnEmbers();
+                setInterval(spawnEmbers, 6000);
+            }
+
+            setTimeout(() => {
+                document.querySelector('.slash-veil')?.remove();
+                document.querySelector('.slash-line')?.remove();
+            }, 1100);
+        })();
+    </script>
 </body>
 </html>
